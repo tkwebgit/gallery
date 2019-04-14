@@ -14,13 +14,13 @@ $comments = Comment::find_the_comments($_GET['Id']);
    ?>
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
+            <!-- mobile display -->
            
            <?php include("includes/top_nav.php") ?>
 
 
 
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <!-- Sidebar Menu Items -  collapse to the responsive navigation menu on small screens -->
             
 
            <?php include("includes/side_nav.php") ?>

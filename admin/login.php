@@ -1,54 +1,56 @@
 <?php require_once("includes/header.php"); ?>
 
-   <?php 
 
-      if($session->is_signed_in()) {
-      redirect("index.php");
+<?php 
 
-      }
+if($session->is_signed_in()) {
 
-      if($session->is_signed_in()) {
-        redirect("index.php");
+redirect("index.php");
 
-      }
+}
 
-      if(isset($_POST['submit'])) {
+if(isset($_POST['submit'])) {
 
-        $username = trim($_POST['username']);
-        $password = trim($_POST['password']);
-
-
-        //method to check database user
-
-
-        $user_found = User::verify_user($username, $password);
-
-
-        if($user_found) {
-
-          $session->login($user_found);
-          redirect("index.php");
+$username = trim($_POST['username']);
+$password = trim($_POST['password']);
 
 
 
-          } else {
 
-            $the_message = "password or username is wrong";
-
-          } 
-      
+/// Method to check database user
 
 
-          } else {
-            $the_message ="";
-            $username = "";
-            $password = "";
+$user_found = User::verify_user($username, $password);
 
 
-          } 
 
-            ?>
-        
+if($user_found) {
+
+$session->login($user_found);
+redirect("index.php");
+
+
+} else {
+
+$the_message = "Your password or username are incorrect";
+
+
+}
+
+
+} else {
+$the_message = "";
+$username = "";
+$password = "";
+
+
+
+}
+
+
+ ?>
+
+
 <div class="col-md-4 col-md-offset-3">
 
 <h4 class="bg-danger"><?php echo $the_message; ?></h4>
@@ -78,6 +80,18 @@
 
 
 </div>
+
+ 
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,127 +1,133 @@
 <?php include("includes/header.php"); ?>
+
 <?php if(!$session->is_signed_in()) {redirect("login.php");} ?>
 
-   <?php
-
-if(isset($_GET['id'])) {
-    redirect("photos.php");
+<?php 
 
 
-  } else {
+if(empty($_GET['id'])) {
 
-    $photo = Photo::find_by_id($_GET['Id']);
+redirect("photos.php");
 
-  }
+} else {
 
-  
- if(isset($_POST['update'])) {
+$photo = Photo::find_by_id($_GET['id']);
 
-    if($photo)  {
+if(isset($_POST['update'])) {
 
-        $photo->title = $_POST['title'];
-        $photo->caption = $_POST['caption'];
-        $photo->alternative_text = $_POST['alternative_text'];
-        $photo->description = $_POST['description'];
+if($photo) {
 
+$photo->title = $_POST['title'];
+$photo->caption = $_POST['caption'];
+$photo->alternate_text = $_POST['alternate_text'];
+$photo->description = $_POST['description'];
 
+$photo->save();
 
-        $photo->save();
-
-    }
+}
 
 
 
-    }
+
+}
 
 
-      
-    
 
 
-        //$photos = Photo::find_all();
 
 
-      ?>
+
+
+
+}
+
+
+
+
+
+
+ ?>
 
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
            
-           <?php include("includes/top_nav.php") ?>
 
 
 
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <?php include("includes/top_nav.php") ?>
+
+
+
+
+
             
+           
 
-           <?php include("includes/side_nav.php") ?>
+    
+        <?php include("includes/side_nav.php"); ?>
+
 
 
 
             <!-- /.navbar-collapse -->
-
-
-
         </nav>
 
         <div id="page-wrapper">
 
 
-        <div class="container-fluid">
-  
-  <!-- Page Heading -->
+            <div class="container-fluid">
 
-  <div class="row">
-                  <div class="col-lg-12">
-                      <h1 class="page-header">
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
                             Photos
-                          <small>Subheading</small>
-                      </h1>
+                            <small>Subheading</small>
+                        </h1>
 
-             <form action="" method="post">
+                    <form action="" method="post">
 
+                        <div class="col-md-8">
 
-                <div class="col-md-8">
-                     <div class="form-group">
-
-
-                     <input type="text" name="title" class="form-control" value="<?php echo $photo->title; ?>">
-
-                    </div>
-                    
-                      <div class="form-group">
-                        <a class="thumbnail" href="#"><img src="<?php echo $photo->picture_path(); ?>"alternative_text; ?>
-                      
-
-                      </div>
+                           <div class="form-group">
+                            
+                            <input type="text" name="title" class="form-control" value="<?php echo $photo->title; ?>">
+                               
+                           </div>
 
 
 
-
-
-                     <div class="form-group">
-                        <label for="caption">Caption</label>
-                    <input type="text" name="caption" class="form-control" value="<?php echo $photo->caption; ?>">
-
-                    </div>
-
-                    <div class="form-group">
-                        <label for="caption">Alternative Text></label>
-                    <input type="text" name="caption" class="form-control" value="<?php echo $photo->alternative_text; ?>">
-
-                    </div>
-                    <div class="form-group">
-                        <label for="caption">Description</label>
-
-                    <textarea class="form-control" name="description" id="" cols="30" rows="10"><?php echo $photo->description; ?>"
-                    </textarea>
-                    </div>
-
-                  </div>
+                           <div class="form-group">
+                            
+                           <a class="thumbnail" href="#"><img src="<?php echo $photo->picture_path(); ?>" alt=""></a>
+                               
+                           </div>
 
 
 
-                  <div class="col-md-4" >
+                            <div class="form-group">
+                                <label for="caption">Caption</label>
+                            <input type="text" name="caption" class="form-control" value="<?php echo $photo->caption; ?>">
+                               
+                           </div>
+
+                            <div class="form-group">
+                                <label for="caption">Alternate Text</label>
+                            <input type="text" name="alternate_text" class="form-control"  value="<?php echo $photo->alternate_text; ?>">
+                               
+                           </div>
+
+                            <div class="form-group">
+                                <label for="caption">Description</label>
+                            <textarea class="form-control" name="description" id="" cols="30" rows="10"><?php echo $photo->description; ?></textarea>
+                             
+                           </div>
+
+                        </div>
+
+
+
+                        <div class="col-md-4" >
                             <div  class="photo-info-box">
                                 <div class="info-box-header">
                                    <h4>Save <span id="toggle" class="glyphicon glyphicon-menu-up pull-right"></span></h4>
@@ -156,27 +162,26 @@ if(isset($_GET['id'])) {
                         </div>
                     </div>
 
+
             </form>
 
 
 
 
-                    
 
 
 
 
 
 
-                  </div>
-              </div>
-              <!-- /.row -->
-               
+                        
+                    </div>
+                </div>
+                <!-- /.row -->
 
-          </div>
-           <!-- /.container-fluid -->
-                     
-          
+            </div>
+            <!-- /.container-fluid -->
+
         </div>
         <!-- /#page-wrapper -->
 
